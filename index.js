@@ -29,9 +29,18 @@ const typeDefs = gql`
 `;
 
 const resolvers = {
+  Produto: {
+    precoComDesconto(produto) {
+      if (produto.desconto) {
+        return produto.preco * (1 - produto.desconto);
+      } else {
+        return produto.preco;
+      }
+    },
+  },
   Usuario: {
-    salario(parent) {
-      return parent.salario_real;
+    salario(usuario) {
+      return usuario.salario_real;
     },
   },
 
@@ -56,8 +65,9 @@ const resolvers = {
     produtoEmDestaque() {
       return {
         nome: "Notebook Gamer",
-        preco: 4999.5,
-        desconto: 0.15,
+        preco: 5000.0,
+        desconto: 0.5, // 50%
+        // desconto: 0.15, // 15%
       };
     },
   },
