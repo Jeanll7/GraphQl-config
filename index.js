@@ -31,13 +31,17 @@ const typeDefs = gql`
 const resolvers = {
   Produto: {
     precoComDesconto(produto) {
-      if (produto.desconto) {
-        return produto.preco * (1 - produto.desconto);
-      } else {
-        return produto.preco;
-      }
+      // if (produto.desconto) {
+      //   return produto.preco * (1 - produto.desconto);
+      // } else {
+      //   return produto.preco;
+      // }
+      return produto.desconto
+        ? produto.preco * (1 - produto.desconto)
+        : produto.preco;
     },
   },
+
   Usuario: {
     salario(usuario) {
       return usuario.salario_real;
