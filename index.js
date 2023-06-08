@@ -25,6 +25,7 @@ const typeDefs = gql`
     horaAtual: Date!
     usuarioLogado: Usuario
     produtoEmDestaque: Produto
+    numerosMegaSena: [Int]
   }
 `;
 
