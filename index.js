@@ -1,25 +1,25 @@
 const { ApolloServer, gql } = require("apollo-server");
 
-// const usuarios = [
-//   {
-//     id: 1,
-//     nome: "João Silva",
-//     email: "jsilva@zemail.com",
-//     idade: 29,
-//   },
-//   {
-//     id: 2,
-//     nome: "Ana Paula",
-//     email: "ana@puaemail.com",
-//     idade: 31,
-//   },
-//   {
-//     id: 3,
-//     nome: "Daniela Smith",
-//     email: "danis@sthemail.com",
-//     idade: 24,
-//   },
-// ];
+const usuarios = [
+  {
+    id: 1,
+    nome: "João Silva",
+    email: "jsilva@zemail.com",
+    idade: 29,
+  },
+  {
+    id: 2,
+    nome: "Ana Paula",
+    email: "ana@puaemail.com",
+    idade: 31,
+  },
+  {
+    id: 3,
+    nome: "Daniela Smith",
+    email: "danis@sthemail.com",
+    idade: 24,
+  },
+];
 
 const typeDefs = gql`
   scalar Date
@@ -47,7 +47,7 @@ const typeDefs = gql`
     usuarioLogado: Usuario
     produtoEmDestaque: Produto
     numerosAleatorios: [Int]! # ! obrigatoriamente vai retornar um array
-    # usuarios: [Usuarios]!
+    usuarios: [Usuario]
   }
 `;
 
@@ -105,9 +105,9 @@ const resolvers = {
       }
       return [...crescente].sort((a, b) => a - b);
     },
-    // usuarios() {
-    //   return usuarios;
-    // },
+    usuarios() {
+      return usuarios;
+    },
   },
 };
 
