@@ -1,5 +1,26 @@
 const { ApolloServer, gql } = require("apollo-server");
 
+// const usuarios = [
+//   {
+//     id: 1,
+//     nome: "João Silva",
+//     email: "jsilva@zemail.com",
+//     idade: 29,
+//   },
+//   {
+//     id: 2,
+//     nome: "Ana Paula",
+//     email: "ana@puaemail.com",
+//     idade: 31,
+//   },
+//   {
+//     id: 3,
+//     nome: "Daniela Smith",
+//     email: "danis@sthemail.com",
+//     idade: 24,
+//   },
+// ];
+
 const typeDefs = gql`
   scalar Date
 
@@ -25,7 +46,8 @@ const typeDefs = gql`
     horaAtual: Date!
     usuarioLogado: Usuario
     produtoEmDestaque: Produto
-    numerosMegaSena: [Int]
+    numerosAleatorios: [Int]! # ! obrigatoriamente vai retornar um array
+    # usuarios: [Usuarios]!
   }
 `;
 
@@ -75,6 +97,17 @@ const resolvers = {
         // desconto: 0.15, // 15%
       };
     },
+    numerosAleatorios() {
+      const crescente = new Set();
+
+      while (crescente.size < 6) {
+        crescente.add(Math.floor(Math.random() * 60 + 1));
+      }
+      return [...crescente].sort((a, b) => a - b);
+    },
+    // usuarios() {
+    //   return usuarios;
+    // },
   },
 };
 
